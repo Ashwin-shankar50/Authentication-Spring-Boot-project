@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cares.cervello.login.DTO.LoginRequestDTO;
 import com.cares.cervello.login.DTO.LoginResponseDTO;
 import com.cares.cervello.login.service.LoginService;
-import com.cares.cervello.login.service.LoginServiceImpl;
 
 @RestController
 public class LoginController {
@@ -18,7 +17,7 @@ public class LoginController {
 	private LoginService loginService;
 
 	@Autowired
-	public LoginController(LoginServiceImpl loginService) {
+	public LoginController(LoginService loginService) {
 		this.loginService = loginService;
 	}
 
