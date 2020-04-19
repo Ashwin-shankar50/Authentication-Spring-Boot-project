@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cares.cervello.entity.UserDetails;
+import com.cares.cervello.utility.PasswordManager;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -19,10 +20,17 @@ public class LoginServiceImpl implements LoginService {
 		System.out.println("Validation request recieved");
 		LoginResponseDTO loginResponseDTO = null;
 		try {
-			List<UserDetails> userList = getUserDetails(emailId, password);
-			// userList.stream().forEach((user) -> System.out.println(user));
+			List<UserDetails> userList = getUserDetails(emailId);
+			/* userList.stream().forEach((user) -> System.out.println(user)); */
+			// PasswordManager.decryptString(userDetails.getPassword())
 			if (userList.size() == 1) {
-				loginResponseDTO = getLoginResponseDTOFromUserDetailsEntity(userList.get(0));
+				if (validatePassword(userList.get(0).getPassword(), password)) {
+					loginResponseDTO = getLoginResponseDTOFromUserDetailsEntity(userList.get(0));
+				} else {
+					throw new Exception("Wrong credentials. Password doesn't match");
+				}
+			} else if (userList.size() < 1) {
+				throw new Exception("Email ID doesn't exist");
 			} else {
 				throw new Exception("DB Handle issue : More than 1 User found for the provided credentials");
 			}
@@ -34,11 +42,15 @@ public class LoginServiceImpl implements LoginService {
 		return loginResponseDTO;
 	}
 
-	public List<UserDetails> getUserDetails(String emailId, String password) throws Exception {
+	public Boolean validatePassword(String dbPass, String thisPass) {
+		return PasswordManager.decryptString(dbPass).equals(thisPass) ? true : false;
+	}
+
+	public List<UserDetails> getUserDetails(String emailId) throws Exception {
 		System.out.println("Authentication verification against DB. Running...");
 		List<UserDetails> userList = null;
 		try {
-			userList = loginRepository.findByEmailIdAndPassword(emailId, password);
+			userList = loginRepository.findByEmailId(emailId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new Exception(e);

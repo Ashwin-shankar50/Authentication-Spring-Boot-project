@@ -26,8 +26,8 @@ public class LoginController {
 		System.out.println(request.toString());
 		System.out.println(request.getEmailId() + " : " + request.getPassword());
 		HttpStatus status = HttpStatus.OK;
-		LoginResponseDTO loginResponseDTO = loginService.valiadateUserByEmailIdAndPassword(request.getEmailId(),
-				request.getPassword());
+		LoginResponseDTO loginResponseDTO = loginService
+				.valiadateUserByEmailIdAndPassword(request.getEmailId().toLowerCase(), (request.getPassword()));
 		if (loginResponseDTO == null) {
 			loginResponseDTO = null;
 			status = HttpStatus.BAD_REQUEST;

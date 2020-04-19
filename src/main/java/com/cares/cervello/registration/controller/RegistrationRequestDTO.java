@@ -1,29 +1,11 @@
-package com.cares.cervello.entity;
+package com.cares.cervello.registration.controller;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "userDetails")
-public class UserDetails {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(nullable = false)
+public class RegistrationRequestDTO {
 	private int userId;
-
 	private String userName;
-
 	private String emailId;
-
 	private String password;
-
 	private String mobileNumber;
-
 	private String userType;
 
 	public int getUserId() {
@@ -79,5 +61,4 @@ public class UserDetails {
 		return "UserDetails [userId=" + userId + ", userName=" + userName + ", emailId=" + emailId + ", password="
 				+ password + ", mobileNumber=" + mobileNumber + ", userType=" + userType + "]";
 	}
-
 }

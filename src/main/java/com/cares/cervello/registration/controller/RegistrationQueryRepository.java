@@ -1,4 +1,4 @@
-package com.cares.cervello.login.controller;
+package com.cares.cervello.registration.controller;
 
 import java.util.List;
 
@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cares.cervello.entity.UserDetails;
 
 @Repository
-public interface LoginQueryRepository extends JpaRepository<UserDetails, Integer> {
-
+public interface RegistrationQueryRepository extends JpaRepository<UserDetails, Integer> {
+	
 	List<UserDetails> findByEmailId(String emailId);
-
 }
