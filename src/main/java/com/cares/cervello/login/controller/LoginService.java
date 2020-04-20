@@ -2,6 +2,6 @@ package com.cares.cervello.login.controller;
 
 public interface LoginService {
 
-	LoginResponseDTO valiadateUserByEmailIdAndPassword(String emailId, String password) throws Exception;
+	LoginResponseDTO validateUserByEmailIdAndPassword(String emailId, String password) throws Exception;
 
 }

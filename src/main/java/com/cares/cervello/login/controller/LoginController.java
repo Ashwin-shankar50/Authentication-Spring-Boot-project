@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@CrossOrigin(origins = "*", allowedHeaders = "*, *")
 public class LoginController {
 
 	private LoginService loginService;
@@ -21,9 +20,6 @@ public class LoginController {
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponseDTO> loginByUserNameAndPassword(@RequestBody LoginRequestDTO request)
 			throws Exception {
-		System.out.println("Request recieved");
-		System.out.println(request.toString());
-		System.out.println(request.getEmailId() + " : " + request.getPassword());
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		LoginResponseDTO loginResponseDTO = loginService
 				.valiadateUserByEmailIdAndPassword(request.getEmailId().toLowerCase(), (request.getPassword()));

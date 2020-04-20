@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class LoginResponseDTO {
+	
 	private int userId;
 
 	private String userName;
@@ -12,6 +13,6 @@ public class LoginResponseDTO {
 
 	private String mobileNumber;
 
-	private String userType;
+  private String userType;
 
 }
