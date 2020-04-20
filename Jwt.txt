@@ -1,0 +1,21 @@
+byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary("95432671081124131651");
+		SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
+		Key signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			JwtBuilder builder;
+			builder = Jwts.builder().setPayload(mapper.writeValueAsString(loginResponseDTO))
+					.signWith(signatureAlgorithm, signingKey);
+			System.out.println(builder.compact());
+		} catch (JsonProcessingException e) {
+		}
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOjMsInVzZXJOYW1lIjoiIiwiZW1haWxJZCI6ImFzaHdpbm1zZDEyMyIsIm1vYmlsZU51bWJlciI6IjU0NjQ2NjQ2NTQiLCJ1c2VyVHlwZSI6IkQifQ.jK5Z7rECdDX7QlSWGYeugkBPjv2lXdFUR4FPHR5hlXA";
+		try {
+			Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary("95432671081124131651"))
+					.parseClaimsJws(token).getBody();
+			System.out.println(claims.get("userId"));
+
+		} catch (Exception exception) {
+			System.out.println("Error");
+		}
