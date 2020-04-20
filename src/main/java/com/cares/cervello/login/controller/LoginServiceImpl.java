@@ -16,13 +16,11 @@ public class LoginServiceImpl implements LoginService {
 	LoginQueryRepository loginRepository;
 
 	@Override
-	public LoginResponseDTO valiadateUserByEmailIdAndPassword(String emailId, String password) throws Exception {
+	public LoginResponseDTO validateUserByEmailIdAndPassword(String emailId, String password) throws Exception {
 		System.out.println("Validation request recieved");
 		LoginResponseDTO loginResponseDTO = null;
 		try {
 			List<UserDetails> userList = getUserDetails(emailId);
-			/* userList.stream().forEach((user) -> System.out.println(user)); */
-			// PasswordManager.decryptString(userDetails.getPassword())
 			if (userList.size() == 1) {
 				if (validatePassword(userList.get(0).getPassword(), password)) {
 					loginResponseDTO = getLoginResponseDTOFromUserDetailsEntity(userList.get(0));
@@ -38,7 +36,6 @@ public class LoginServiceImpl implements LoginService {
 			e.printStackTrace();
 			return null;
 		}
-
 		return loginResponseDTO;
 	}
 
