@@ -1,14 +1,10 @@
 package com.cares.cervello.registration.controller;
 
+import lombok.Data;
+
+@Data
 public class RegistrationResponseDTO {
 
 	private String registrationStatus;
 
-	public String getRegistrationStatus() {
-		return registrationStatus;
-	}
-
-	public void setRegistrationStatus(String registrationStatus) {
-		this.registrationStatus = registrationStatus;
-	}
 }
