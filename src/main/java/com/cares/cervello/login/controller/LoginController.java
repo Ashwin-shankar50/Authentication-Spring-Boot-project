@@ -22,11 +22,12 @@ public class LoginController {
 			throws Exception {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		LoginResponseDTO loginResponseDTO = loginService
-				.validateUserByEmailIdAndPassword(request.getEmailId().toLowerCase(), (request.getPassword()));
+				.valiadateUserByEmailIdAndPassword(request.getEmailId().toLowerCase(), (request.getPassword()));
 		if (loginResponseDTO != null) {
 			status = HttpStatus.OK;
 		}
 		ResponseEntity<LoginResponseDTO> response = new ResponseEntity<LoginResponseDTO>(loginResponseDTO, status);
+		System.out.println("Response sent");
 		return response;
 	}
 

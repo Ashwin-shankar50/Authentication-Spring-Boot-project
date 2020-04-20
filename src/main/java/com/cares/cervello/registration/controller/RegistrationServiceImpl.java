@@ -19,30 +19,21 @@ public class RegistrationServiceImpl implements RegistrationService {
 		System.out.println("Updating the new user details to DB");
 		RegistrationResponseDTO registrationResponseDTO = new RegistrationResponseDTO();
 		try {
-			/*
-			 * String enc = PasswordManager.encryptString(request.getPassword());
-			 * System.out.println("Encrypted : "+enc); String dec =
-			 * PasswordManager.decryptString(enc); System.out.println("Decrypted : "+dec);
-			 */
 			List<UserDetails> userList = getUserDetails(request.getEmailId().toLowerCase());
 			if (userList.size() > 0) {
 				registrationResponseDTO.setRegistrationStatus("EMAIL_ID_ALREADY_USED"); // Checking if the user is
-																						// already registered
+																						// already registered //
 			} else {
 				registrationRepository.save(getRegistrationResponseDTOFromUserDetailsEntity(request)); // Inserting the
-				// record
+																										// record
 				registrationResponseDTO.setRegistrationStatus("SUCCESS"); // On successful insertion, assigning status
-																			// flag as
-				// true
+																			// flag as true
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			registrationResponseDTO.setRegistrationStatus("SERVER_ERROR"); // On failure insertion, assigning status
-																			// flag as
-			// false
+																			// flag as false
 		}
-
 		return registrationResponseDTO;
 	}
 
