@@ -13,6 +13,6 @@ public class LoginResponseDTO {
 
 	private String mobileNumber;
 
-  private String userType;
+	private String userType;
 
 }

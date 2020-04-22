@@ -1,5 +1,7 @@
 package com.cares.cervello.item.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,15 +17,16 @@ public class ItemController {
 		this.itemService = itemService;
 	}
 
+	private static final Logger LOG = LoggerFactory.getLogger(ItemController.class);
+
 	@GetMapping("/item")
 	public ResponseEntity<ItemResponseDTO> itemByUserNameAndPassword() throws Exception {
-		HttpStatus status = HttpStatus.BAD_REQUEST;
+
+		LOG.info("Entry : /item");
 		ItemResponseDTO itemResponseDTO = itemService.getAllItem();
-		if (itemResponseDTO != null) {
-			status = HttpStatus.OK;
-		}
-		ResponseEntity<ItemResponseDTO> response = new ResponseEntity<ItemResponseDTO>(itemResponseDTO, status);
-		System.out.println("Response sent");
+		ResponseEntity<ItemResponseDTO> response = new ResponseEntity<ItemResponseDTO>(itemResponseDTO, HttpStatus.OK);
+		LOG.info("Exit : /login with {}", response);
+
 		return response;
 	}
 }

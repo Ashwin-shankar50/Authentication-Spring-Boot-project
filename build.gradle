@@ -36,16 +36,22 @@ repositories {
 
 dependencies {
 
-	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+	// Dependency for Spring jpa
 	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.4.RELEASE'
-	compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.2'
+	// Dependency for Spring lombok
 	compileOnly 'org.projectlombok:lombok:1.18.8'
 	annotationProcessor 'org.projectlombok:lombok:1.18.8'
 	// Dependency for Spring boot framework
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+	// Dependency for mysql-connector-java
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+	// Dependency for swagger 
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.0.1'	
+	// Dependency for swagger UI
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.0.2'
+	// Dependency for logger 
+	testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 
 	
 }

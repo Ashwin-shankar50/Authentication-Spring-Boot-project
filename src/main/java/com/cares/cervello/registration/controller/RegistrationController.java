@@ -1,5 +1,7 @@
 package com.cares.cervello.registration.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,23 +18,17 @@ public class RegistrationController {
 	public RegistrationController(RegistrationService registrationService) {
 		this.registrationService = registrationService;
 	}
+	private static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
 
 	@PostMapping("/register")
 	public ResponseEntity<RegistrationResponseDTO> registerNewUser(@RequestBody RegistrationRequestDTO request)
 			throws Exception {
-		System.out.println("Request recieved");
-		System.out.println(request.toString());
-		HttpStatus status = HttpStatus.BAD_REQUEST;
-
+		LOG.info("Entry : /register with {}",request);
 		RegistrationResponseDTO registrationResponseDTO = registrationService.updateNewUser(request);
-
-		if (registrationResponseDTO.getRegistrationStatus() == "SUCCESS") {
-			status = HttpStatus.OK;
-		}
-
 		ResponseEntity<RegistrationResponseDTO> response = new ResponseEntity<RegistrationResponseDTO>(
-				registrationResponseDTO, status);
-		System.out.println("Response sent");
+				registrationResponseDTO, HttpStatus.OK);
+		LOG.info("Exit : /login with {}", response);
+		
 		return response;
 	}
 
