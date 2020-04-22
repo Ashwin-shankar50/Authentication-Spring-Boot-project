@@ -16,7 +16,7 @@ public class LoginServiceImpl implements LoginService {
 	LoginQueryRepository loginRepository;
 
 	@Override
-	public LoginResponseDTO validateUserByEmailIdAndPassword(String emailId, String password) throws Exception {
+	public LoginResponseDTO valiadateUserByEmailIdAndPassword(String emailId, String password) throws Exception {
 		System.out.println("Validation request recieved");
 		LoginResponseDTO loginResponseDTO = null;
 		try {
