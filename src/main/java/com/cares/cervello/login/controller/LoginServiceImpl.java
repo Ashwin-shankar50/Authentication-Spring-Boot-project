@@ -20,6 +20,7 @@ public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	LoginQueryRepository loginRepository;
+
 	private static final Logger LOG = LoggerFactory.getLogger(LoginServiceImpl.class);
 
 	@Override
@@ -63,14 +64,14 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	public LoginResponseDTO getLoginResponseDTOFromUserDetailsEntity(UserDetails userDetails) {
-		
+
 		LoginResponseDTO userDetailsDTO = new LoginResponseDTO();
 		userDetailsDTO.setEmailId(Optional.ofNullable(userDetails.getEmailId()).orElse(null));
 		userDetailsDTO.setMobileNumber(Optional.ofNullable(userDetails.getMobileNumber()).orElse(null));
 		userDetailsDTO.setUserId(Optional.ofNullable(userDetails.getUserId()).orElse(null));
 		userDetailsDTO.setUserName(Optional.ofNullable(userDetails.getUserName()).orElse(null));
 		userDetailsDTO.setUserType(Optional.ofNullable(userDetails.getUserType()).orElse(null));
-		
+
 		return userDetailsDTO;
 	}
 

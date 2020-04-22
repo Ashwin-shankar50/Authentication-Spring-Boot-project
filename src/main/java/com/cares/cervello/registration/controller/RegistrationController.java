@@ -18,17 +18,18 @@ public class RegistrationController {
 	public RegistrationController(RegistrationService registrationService) {
 		this.registrationService = registrationService;
 	}
+
 	private static final Logger LOG = LoggerFactory.getLogger(RegistrationController.class);
 
 	@PostMapping("/register")
 	public ResponseEntity<RegistrationResponseDTO> registerNewUser(@RequestBody RegistrationRequestDTO request)
 			throws Exception {
-		LOG.info("Entry : /register with {}",request);
+		LOG.info("Entry : /register with {}", request);
 		RegistrationResponseDTO registrationResponseDTO = registrationService.updateNewUser(request);
 		ResponseEntity<RegistrationResponseDTO> response = new ResponseEntity<RegistrationResponseDTO>(
 				registrationResponseDTO, HttpStatus.OK);
 		LOG.info("Exit : /login with {}", response);
-		
+
 		return response;
 	}
 

@@ -30,8 +30,9 @@ public class LoginController {
 			throws EmailIdNotFoundException, PasswordNotMatchedException, DatabaseAccessException {
 
 		LOG.info("Entry : /login with {}", request);
-		LoginResponseDTO loginResponseDTO = loginService
-				.valiadateUserByEmailIdAndPassword(request.getEmailId().toLowerCase(), (request.getPassword()));
+		LoginResponseDTO loginResponseDTO;
+		loginResponseDTO = loginService.valiadateUserByEmailIdAndPassword(request.getEmailId().toLowerCase(),
+				request.getPassword());
 		ResponseEntity<LoginResponseDTO> response = new ResponseEntity<LoginResponseDTO>(loginResponseDTO,
 				HttpStatus.OK);
 		LOG.info("Exit : /login with {}", response);

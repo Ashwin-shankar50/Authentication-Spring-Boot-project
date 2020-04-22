@@ -22,7 +22,8 @@ public class RegistrationServiceImpl implements RegistrationService {
 	private static final Logger LOG = LoggerFactory.getLogger(RegistrationServiceImpl.class);
 
 	@Override
-	public RegistrationResponseDTO updateNewUser(RegistrationRequestDTO request) throws Exception {
+	public RegistrationResponseDTO updateNewUser(RegistrationRequestDTO request)
+			throws DatabaseAccessException, EmailIdAlreadyExistException {
 		LOG.info("updateNewUser with {}", request);
 		RegistrationResponseDTO registrationResponseDTO = new RegistrationResponseDTO();
 		if (!isEmailIdAlreadyRegistered(request.getEmailId().toLowerCase())) {
